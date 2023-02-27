@@ -64,6 +64,14 @@
 </ul>
 </li>
 </ul>
-<li>pages</li>
+<li>pages
+<ul>
+<li>Home.js</li>
+<li>Headphone.js</li>
+<li>speaker.js</li>
+<li>earphone.js</li>
+<li>checkout.js</li>
+<ul>
+</li>
 </ul>
 </ul>
