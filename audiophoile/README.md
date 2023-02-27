@@ -62,7 +62,6 @@
 <li>footer.test.js</li>
 </ul>
 </li>
-</ul>
 <li>pages
 <ul>
 <li>Home.js</li>
@@ -70,8 +69,7 @@
 <li>speaker.js</li>
 <li>earphone.js</li>
 <li>checkout.js</li>
-<ul>
-</li>
 </ul>
+</li>
 </li>
 </ul>
