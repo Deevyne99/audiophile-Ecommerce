@@ -50,8 +50,7 @@
 
 <h2>File Structure </h2>
 <ul>
-<li>src</i>
-<ul>
+<li>src</li>
 <ul>
 <li>Components
 <ul>navbar
