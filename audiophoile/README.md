@@ -52,7 +52,7 @@
 <ul>
 <li>src
 <ul>
-<>Components
+<li>Components
 <ul>
 <li>navbar
 <ul>
@@ -64,8 +64,8 @@
 <ul>
 <li>footer.js</li>
 <li>footer.test.js</li>
-</li>
 </ul>
+</li>
 </ul>
 
 <li>pages
