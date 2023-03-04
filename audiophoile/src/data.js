@@ -183,4 +183,11 @@ export const links = [
   { id: 2, text: 'headphones', url: '/headphones' },
   { id: 3, text: 'speakers', url: '/speakers' },
   { id: 4, text: 'earphones', url: '/earphones' },
+  { id: 5, text: 'checkout', url: '/checkout' },
+]
+
+export const shop = [
+  { id: 1, img: '../assests/xx99-mark1.png', url: '/headphones' },
+  { id: 2, img: '../assests/zx9.png', url: '/speakers' },
+  { id: 2, img: '../assests/yx1.png', url: '/earphones' },
 ]
