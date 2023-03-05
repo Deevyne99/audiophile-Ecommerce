@@ -20,7 +20,7 @@ const Hero = () => {
             made for the passionate music enthusiast.
           </p>
           <Link
-            className='p-2 uppercase bg-orange max-w-[120px] text-center'
+            className='p-2 uppercase bg-orange w-[130px] text-center'
             to={'/headphones'}
           >
             see product

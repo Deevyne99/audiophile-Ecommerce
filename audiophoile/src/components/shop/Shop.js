@@ -5,17 +5,21 @@ import { Link } from 'react-router-dom'
 const Shop = () => {
   return (
     <section className='py-24'>
-      <div className='mx-4 md:mx-14 lg:mx-24 flex gap-y-16 md:flex-row justify-center gap-8 flex-wrap'>
+      <div className='mx-4 flex-col md:mx-14 lg:mx-24 flex gap-y-16 md:flex-row justify-center gap-8 items-center'>
         {shop.map((item, index) => {
           const { id, img, url, name } = item
           return (
             <div
-              className='relative flex flex-col w-[300px] h-[180px] space-y-4  bg-grayColor justify-center items-center rounded-md'
+              className='relative flex flex-col  w-[250px] sm:w-[400px] md:w-[300px] lg:w-[400px] h-[180px] space-y-4  bg-grayColor justify-center items-center rounded-md'
               key={id}
             >
               <div className='mx-auto mt-[-50px] bg-transparent '>
-                <img className='w-20' src={img} alt='' />
-                <div className='bg-black h-[8px] rounded-full w-20 blur-md'></div>
+                <img
+                  className='w-20 hover:scale-110 duration-300'
+                  src={img}
+                  alt=''
+                />
+                <div className='bg-black h-4 rounded-full w-20 blur-md'></div>
               </div>
 
               <p className='uppercase font-semibold'>{name}</p>

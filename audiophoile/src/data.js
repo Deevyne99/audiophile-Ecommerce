@@ -190,7 +190,7 @@ export const shop = [
   {
     id: 1,
     img: '../assests/xx99-marki1.png',
-    url: '/,headphones',
+    url: '/headphones',
     name: 'headphones',
   },
   { id: 2, img: '../assests/zx9.png', url: '/speakers', name: 'speakers' },
