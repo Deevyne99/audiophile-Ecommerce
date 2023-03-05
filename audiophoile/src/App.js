@@ -15,7 +15,7 @@ function App() {
   const data = useGlobalContext()
   console.log(data)
   return (
-    <>
+    <section>
       <BrowserRouter>
         <Navbar />
         <Routes>
@@ -29,7 +29,7 @@ function App() {
 
         <Footer />
       </BrowserRouter>
-    </>
+    </section>
   )
 }
 

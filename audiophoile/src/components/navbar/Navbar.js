@@ -7,7 +7,7 @@ const Navbar = () => {
   const { links } = useGlobalContext()
   return (
     <header className='bg-black '>
-      <nav className='flex justify-between mx-4 md:mx-16 lg:mx-24 py-5 text-white items-center sticky'>
+      <nav className='flex  justify-between mx-4 md:mx-16 lg:mx-24 py-5 text-white items-center '>
         <div className='flex lg:hidden space-x-10 items-center'>
           <button>
             <FaBars className='animate-bounce text-xl hover:text-orange' />
@@ -37,6 +37,7 @@ const Navbar = () => {
         </ul>
         <img src={cart} alt='cart' />
       </nav>
+      <div className='h-[1px] lg:mx-24 mx-4 md:mx-16 opacity-50 bg-white'></div>
     </header>
   )
 }

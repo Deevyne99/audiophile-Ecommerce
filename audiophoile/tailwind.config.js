@@ -4,8 +4,15 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        black: '#000000',
+        black: '#131313',
         orange: '#D87D4A',
+        lightBlack: '#191919',
+        footerColor: '#101010',
+        heroColor: '#0E0E0E',
+        grayColor: '#F1F1F1',
+      },
+      letterSpacing: {
+        wide: '10px',
       },
     },
   },
