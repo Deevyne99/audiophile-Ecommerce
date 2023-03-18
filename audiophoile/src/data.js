@@ -194,5 +194,5 @@ export const shop = [
     name: 'headphones',
   },
   { id: 2, img: '../assests/zx9.png', url: '/speakers', name: 'speakers' },
-  { id: 2, img: '../assests/yx1.png', url: '/earphones', name: 'earphones' },
+  { id: 3, img: '../assests/yx1.png', url: '/earphones', name: 'earphones' },
 ]
