@@ -5,7 +5,7 @@ export const products = [
     Category: 'headphones',
     description:
       'The new XX99 Mark II headphones is the pinnacle of pristine audio. It redefines your premium headphone experience by reproducing the balanced depth and precision of studio-quality sound.',
-    img: '../assests/xx99-mark2.png',
+    img: '../assests/xx99-marki2.png',
     images: {
       image1: '../assests/xx99-user-1.png',
       image2: '../assests/xx99-user-2.png',
@@ -35,7 +35,7 @@ export const products = [
     Category: 'headphones',
     description:
       'As the gold standard for headphones, the classic XX99 Mark I offers detailed and accurate audio reproduction for audiophiles, mixing engineers, and music aficionados alike in studios and on the go.',
-    img: '../assests/xx99-mark1.png',
+    img: '../assests/xx99-marki1.png',
     images: {
       image1: '../assests/mark1-user1.png',
       image2: '../assests/mark2-user2.png',
@@ -187,7 +187,12 @@ export const links = [
 ]
 
 export const shop = [
-  { id: 1, img: '../assests/xx99-mark1.png', url: '/headphones' },
-  { id: 2, img: '../assests/zx9.png', url: '/speakers' },
-  { id: 2, img: '../assests/yx1.png', url: '/earphones' },
+  {
+    id: 1,
+    img: '../assests/xx99-marki1.png',
+    url: '/headphones',
+    name: 'headphones',
+  },
+  { id: 2, img: '../assests/zx9.png', url: '/speakers', name: 'speakers' },
+  { id: 2, img: '../assests/yx1.png', url: '/earphones', name: 'earphones' },
 ]
