@@ -10,6 +10,7 @@ module.exports = {
         footerColor: '#101010',
         heroColor: '#0E0E0E',
         grayColor: '#F1F1F1',
+        backgroundGray: '#F2F2F2',
       },
       letterSpacing: {
         wide: '10px',
