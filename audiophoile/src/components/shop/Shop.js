@@ -10,7 +10,7 @@ const Shop = () => {
           const { id, img, url, name } = item
           return (
             <div
-              className='relative flex flex-col  w-[250px] sm:w-[400px] md:w-[300px] lg:w-[400px] h-[180px] space-y-4  bg-grayColor justify-center items-center rounded-md'
+              className='relative flex flex-col  w-full sm:w-full md:w-[320px] lg:w-[400px] h-[180px] space-y-4  bg-grayColor justify-center items-center rounded-md'
               key={id}
             >
               <div className='mx-auto mt-[-50px] bg-transparent '>
