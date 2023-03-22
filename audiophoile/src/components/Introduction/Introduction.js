@@ -43,7 +43,7 @@ const Introduction = () => {
           </Link>
         </div>
       </div>
-      <div className='flex flex-col md:flex-row mx-auto justify-center md:items-stretch items-center mt-8 gap-6 w-full '>
+      <div className='flex flex-col md:flex-row mx-auto justify-center md:items-stretch items-center mt-8 gap-4 w-full '>
         <img className='md:w-1/2 w-full' src={earPod} alt='ear pod' />
 
         <div className='bg-grayColor w-full  md:w-1/2 flex flex-col justify-center items-center  space-y-8 rounded-md py-12  px-4'>

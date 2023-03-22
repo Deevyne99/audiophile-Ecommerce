@@ -1,5 +1,3 @@
-import logo from './logo.svg'
-import './App.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { useGlobalContext } from './components/context'
 import Navbar from './components/navbar/Navbar'

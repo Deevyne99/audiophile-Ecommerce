@@ -19,6 +19,8 @@ module.exports = {
         wideImage: "url('/src/images/speaker-table.png')",
         mediumImage: "url('/src/images/tablet.png')",
         smallImage: "url('/src/images/mobile.png')",
+        userImage: "url('/src/images/user.png')",
+        userTab: "url('/src/images/user-tab.png')",
       },
     },
   },
