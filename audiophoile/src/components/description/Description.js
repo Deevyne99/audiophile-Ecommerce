@@ -5,7 +5,7 @@ const Description = () => {
     <section className='lg:mx-24 mx-4 md:mx-16 py-16 pb-12'>
       <div className='flex  flex-col-reverse lg:flex-row justify-between gap-12 items-center'>
         <article className='w-full lg:w-1/2 flex flex-col justify-center items-center lg:items-start lg:text-left lg:justify-between '>
-          <h3 className='uppercase text-center lg:text-left font-semibold text-4xl max-w-sm'>
+          <h3 className='uppercase text-center lg:text-left font-semibold text-3xl lg:text-4xl max-w-sm'>
             Bringing you the <span className='text-orange'>best</span> audio
             gear
           </h3>

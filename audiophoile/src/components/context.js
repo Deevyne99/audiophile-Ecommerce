@@ -4,13 +4,18 @@ import reducer from './reducer'
 const AppContext = React.createContext()
 const initialState = {
   links: links,
-  isSidebaropen: false,
+  isSidebarOpen: false,
 }
 export const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState)
-  console.log(links)
+
+  const toggleSideBar = () => {
+    dispatch({ type: 'TOGGLE_SIDEBAR' })
+  }
   return (
-    <AppContext.Provider value={{ ...state }}>{children}</AppContext.Provider>
+    <AppContext.Provider value={{ ...state, toggleSideBar }}>
+      {children}
+    </AppContext.Provider>
   )
 }
 

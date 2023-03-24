@@ -1,4 +1,7 @@
 const reducer = (state, action) => {
-  return state
+  if (action.type === 'TOGGLE_SIDEBAR') {
+    return { ...state, isSidebarOpen: !state.isSidebarOpen }
+  }
+  throw new Error(`No Matching "${action.type}" - action type`)
 }
 export default reducer

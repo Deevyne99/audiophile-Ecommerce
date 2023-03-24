@@ -16,6 +16,7 @@ function App() {
     <section>
       <BrowserRouter>
         <Navbar />
+
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/headphones' element={<Headphone />} />

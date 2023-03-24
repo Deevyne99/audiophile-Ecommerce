@@ -11,18 +11,22 @@ const Introduction = () => {
     <section className='flex flex-col mx-4 md:mx-16 lg:mx-24 pb-8'>
       <div className='flex flex-col lg:flex-row bg-orange h-[550px] sm:h-[700px] lg:h-[400px]  justify-between rounded-md items-center '>
         <div className='relative mb-[-60px] w-full lg:w-1/2  flex flex-col justify-center   '>
-          <div className='w-[320px] h-[320px] mt-[-40px] sm:w-[500px] sm:h-[500px] sm:mt-[-80px] xl:w-[700px] xl:h-[700px] lg:w-[650px] lg:h-[650px] xl:ml-[-20px] lg:ml-[-40px]  md:mt-[-90px] lg:mt-[100px] mx-auto   border-white border-[1px] border-b-0 opacity-25  rounded-full'>
-            <div className='w-[250px] h-[250px] sm:h-[380px] sm:w-[380px] md:w-[380px] md:h-[380px]  mt-[20px] md:mt-[60px] lg:mt-48 mx-auto   border-white border-[1px] border-b-0   rounded-full   '>
+          <div
+            className='w-[300px] h-[520px] mt-[-100px] sm:w-[500px] sm:h-[500px] sm:mt-[-80px] xl:w-[700px] xl:h-[700px] lg:w-[650px] lg:h-[650px] xl:ml-[-20px] lg:ml-[-40px] border-l-0 border-r-0 border-b-[1px]
+          sm:border-l-[1px] sm:border-r-[1px] sm:border-b-[1px]
+          md:mt-[-90px] lg:mt-[100px] mx-auto   border-white md:border-[1px] opacity-25  rounded-full'
+          >
+            <div className='w-[250px] h-[250px] sm:h-[380px] sm:w-[380px] md:w-[380px] md:h-[380px]  mt-[180px] sm:mt-[20px] md:mt-[60px] lg:mt-48 mx-auto   border-white border-[1px] border-b-0   rounded-full   '>
               <div className='w-[220px] h-[220px] sm:h-[350px] sm:w-[350px] md:w-[350px] md:h-[350px] mt-4 mx-auto border-white border-[1px]   rounded-full   '></div>
             </div>
           </div>
           <img
-            className='absolute w-36 mt-[-70px] sm:mt-[-160px] md:mt-[-120px] lg:mt-[-30px] sm:w-52 md:w-60 lg:w-80 mx-auto z-10 left-0 lg:left-20 right-0 '
+            className='absolute w-36 mt-[-40px] sm:mt-[-160px] md:mt-[-120px] lg:mt-[-30px] sm:w-52 md:w-60 lg:w-80 mx-auto z-10 left-0 lg:left-20 right-0 '
             src={zx9}
             alt='speaker'
           />
         </div>
-        <article className='flex relative lg:relative pb-36  flex-col space-y-6 text-white px-4 md:px-12 pt-16 lg:w-1/2 w-full md:mt-[-120px] md:pb-32 md:mx-auto mx-0 md:justify-center lg:mt-0 text-center lg:text-left lg:pb-0'>
+        <article className='flex relative lg:relative pb-36  flex-col space-y-6 text-white px-4 md:px-12 pt-16 lg:w-1/2 w-full mt-[-120px] md:mt-[-120px] md:pb-32 md:mx-auto mx-0 md:justify-center lg:mt-0 text-center lg:text-left lg:pb-0'>
           <h2 className='text-4xl font-bold uppercase'>zx9 speakers</h2>
           <p className='max-w-xs flex font-thin text-md opacity-75 mx-auto lg:mx-0'>
             Upgrade to premium speakers that are phenomenally built to deliver
