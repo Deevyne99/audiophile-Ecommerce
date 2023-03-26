@@ -8,7 +8,7 @@ const Navbar = () => {
   const { links, isSidebarOpen, toggleSideBar } = useGlobalContext()
   return (
     <>
-      <header className='relative bg-black '>
+      <header className=' bg-black sticky top-0 z-30 duration-500'>
         <nav className='flex  justify-between mx-4 md:mx-16 lg:mx-24 py-5 text-white items-center '>
           <div className='flex lg:hidden space-x-10 items-center'>
             <button onClick={toggleSideBar}>
