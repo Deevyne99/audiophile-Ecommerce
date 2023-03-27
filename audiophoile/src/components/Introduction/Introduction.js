@@ -2,13 +2,12 @@ import React from 'react'
 import zx9 from '../../images/zx9-speaker.png'
 import { Link } from 'react-router-dom'
 import earPod from '../../images/ear-pod.png'
-import earPodTab from '../../images/earpod-tablet.png'
-import earPodMob from '../../images/earpod-mobile.png'
+
 // import ovalImg from '../../images/oval-2.png'
 // import ovalImage from '../../images/Oval-3.png'
 const Introduction = () => {
   return (
-    <section className='flex flex-col mx-4 md:mx-16 lg:mx-24 pb-8'>
+    <section className='flex flex-col mx-4 md:mx-16 lg:mx-24 pb-24'>
       <div className='flex flex-col lg:flex-row bg-orange h-[550px] sm:h-[700px] lg:h-[400px]  justify-between rounded-md items-center '>
         <div className='relative mb-[-60px] w-full lg:w-1/2  flex flex-col justify-center   '>
           <div

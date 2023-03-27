@@ -10,8 +10,8 @@ import Earphone from './pages/Earphone'
 import Checkout from './pages/Checkout'
 
 function App() {
-  const data = useGlobalContext()
-  console.log(data)
+  // const data = useGlobalContext()
+
   return (
     <section>
       <BrowserRouter>

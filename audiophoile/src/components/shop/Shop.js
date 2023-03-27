@@ -4,7 +4,7 @@ import { FaChevronRight } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 const Shop = () => {
   return (
-    <section className='py-24'>
+    <section className='py-24 '>
       <div className='mx-4 group flex-col md:mx-14 lg:mx-24 flex gap-y-16 md:flex-row justify-center gap-8 items-center'>
         {shop.map((item, index) => {
           const { id, img, url, name } = item

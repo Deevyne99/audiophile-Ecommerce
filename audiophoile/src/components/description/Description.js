@@ -2,14 +2,14 @@ import React from 'react'
 import user from '../../images/user.png'
 const Description = () => {
   return (
-    <section className='lg:mx-24 mx-4 md:mx-16 py-16 pb-12'>
+    <section className='lg:mx-24 mx-4 md:mx-16 '>
       <div className='flex  flex-col-reverse lg:flex-row justify-between gap-12 items-center'>
         <article className='w-full lg:w-1/2 flex flex-col justify-center items-center lg:items-start lg:text-left lg:justify-between '>
           <h3 className='uppercase text-center lg:text-left font-semibold text-3xl lg:text-4xl max-w-sm'>
             Bringing you the <span className='text-orange'>best</span> audio
             gear
           </h3>
-          <p className='lg:max-w-md max-w-lg text-center lg:text-start opacity-50 text-sm mt-10'>
+          <p className='lg:max-w-md max-w-lg text-center lg:text-start opacity-50 text-sm mt-6 md:mt-10'>
             Located at the heart of New York City, Audiophile is the premier
             store for high end headphones, earphones, speakers, and audio
             accessories. We have a large showroom and luxury demonstration rooms
