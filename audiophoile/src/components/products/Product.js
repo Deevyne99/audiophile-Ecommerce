@@ -9,7 +9,7 @@ const Product = ({ name }) => {
   console.log(filteredProducts)
   React.useEffect(() => {
     getProducts(name)
-  }, [name])
+  })
 
   return (
     <section className='md:mx-16 mx-4 lg:mx-24 pt-16 md:pt-24 pb-10'>

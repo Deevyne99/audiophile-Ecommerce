@@ -23,7 +23,7 @@ function App() {
           <Route path='/speakers' element={<Speaker />} />
           <Route path='/earphones' element={<Earphone />} />
           <Route path='/checkout' element={<Checkout />} />
-          <Route path='/product-details' element={<Details />} />
+          <Route path='/product/:id' element={<Details />} />
         </Routes>
 
         <Footer />

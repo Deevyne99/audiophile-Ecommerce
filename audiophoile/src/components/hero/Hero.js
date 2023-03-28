@@ -15,7 +15,7 @@ const Hero = () => {
           <h2 className='text-4xl uppercase tracking-wider font-bold max-w-sm text-center md:text-left'>
             XX99 Mark II Headphones
           </h2>
-          <p className='opacity-50 text-sm font-thin max-w-[300px] text-center md:text-left'>
+          <p className='opacity-50 text-sm font-thin max-w-[350px] text-center md:text-left'>
             Experience natural, lifelike audio and exceptional build quality
             made for the passionate music enthusiast.
           </p>
