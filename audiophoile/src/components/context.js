@@ -9,6 +9,7 @@ const initialState = {
   allProducts: [],
   loading: false,
   filteredProducts: [],
+  single_product: {},
 }
 export const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState)
@@ -24,11 +25,16 @@ export const AppProvider = ({ children }) => {
   const getAllProducts = () => {
     dispatch({ type: 'GET_ALL_PRODUCTS', payload: products })
   }
+  const singleProduct = (id) => {
+    dispatch({ type: 'GET_SINGLE_PRODUCT', payload: id })
+  }
   useEffect(() => {
     getAllProducts()
   }, [])
   return (
-    <AppContext.Provider value={{ ...state, toggleSideBar, getProducts }}>
+    <AppContext.Provider
+      value={{ ...state, toggleSideBar, getProducts, singleProduct }}
+    >
       {children}
     </AppContext.Provider>
   )

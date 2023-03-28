@@ -8,23 +8,26 @@ const reducer = (state, action) => {
       allProducts: action.payload,
     }
   }
-  // if ('FILTER_LOADING') {
-  //   return { ...state, loading: true }
-  // }
+
   if (action.type === 'GET_PRODUCTS') {
     const tempProducts = state.allProducts.filter(
       (item) => item.Category === action.payload
     )
-    // console.log(tempProducts)
+
     return {
       ...state,
       filteredProducts: tempProducts,
       loading: false,
     }
   }
-  // if ('FETCH_PRODUCTS_SUCCESSFUL') {
-  //   return { ...state, loading: false }
-  // }
+  if (action.type === 'GET_SINGLE_PRODUCT') {
+    return {
+      ...state,
+      single_product: state.allProducts.find(
+        (item) => item.id === Number(action.payload)
+      ),
+    }
+  }
   throw new Error(`No Matching "${action.type}" - action type`)
 }
 export default reducer
