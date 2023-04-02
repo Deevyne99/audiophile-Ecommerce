@@ -10,10 +10,12 @@ const reducer = (state, action) => {
   }
 
   if (action.type === 'GET_PRODUCTS') {
-    const tempProducts = state.allProducts.filter(
+    let tempProducts = []
+
+    tempProducts = state.allProducts.filter(
       (item) => item.Category === action.payload
     )
-
+    // console.log(tempProducts)
     return {
       ...state,
       filteredProducts: tempProducts,

@@ -7,7 +7,7 @@ import earPod from '../../images/ear-pod.png'
 // import ovalImage from '../../images/Oval-3.png'
 const Introduction = () => {
   return (
-    <section className='flex flex-col mx-4 md:mx-16 lg:mx-24 pb-24'>
+    <section className='flex flex-col mx-4 md:mx-16 lg:mx-24 pb-24 xl:mx-36'>
       <div className='flex flex-col lg:flex-row bg-orange h-[550px] sm:h-[700px] lg:h-[400px]  justify-between rounded-md items-center '>
         <div className='relative mb-[-60px] w-full lg:w-1/2  flex flex-col justify-center   '>
           <div

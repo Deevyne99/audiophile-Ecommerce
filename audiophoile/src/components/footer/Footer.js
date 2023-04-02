@@ -6,8 +6,8 @@ const Footer = () => {
   const { links } = useGlobalContext()
   return (
     <footer className='bg-footerColor relative py-12 text-white mt-24'>
-      <div className='h-[4px] absolute top-0 lg:mx-24 md:mx-16 mx-auto left-0 right-0 bg-orange w-[100px]'></div>
-      <div className='flex flex-col lg:flex-row justify-center    md:justify-between mx-4 lg:mx-24 md:mx-16 '>
+      <div className='h-[4px] absolute top-0 lg:mx-24 xl:mx-32 md:mx-16 mx-auto left-0 right-0 bg-orange w-[100px]'></div>
+      <div className='flex flex-col lg:flex-row justify-center    md:justify-between mx-4 lg:mx-24 md:mx-16 xl:mx-32'>
         <article className='flex flex-col   space-y-8'>
           <Link
             to={'/'}
@@ -17,14 +17,15 @@ const Footer = () => {
           </Link>
           <div>
             <ul className='flex justify-center text-center md:text-left font-medium flex-col md:flex-row lg:hidden md:space-x-6 uppercase space-y-4 md:space-y-0 md:justify-between max-w-md mx-auto md:mx-0 '>
-              {links.map((link, index) => {
-                const { id, text, url } = link
-                return (
-                  <li className='hover:text-orange font-medium' key={id}>
-                    <Link to={url}>{text}</Link>
-                  </li>
-                )
-              })}
+              {links &&
+                links.map((link, index) => {
+                  const { id, text, url } = link
+                  return (
+                    <li className='hover:text-orange font-medium' key={id}>
+                      <Link to={url}>{text}</Link>
+                    </li>
+                  )
+                })}
             </ul>
           </div>
           <p className='text-white flex justify-center mx-auto md:mx-0 opacity-50 max-w-sm text-center md:text-left md:max-w-md text-sm font-thin'>
@@ -50,14 +51,15 @@ const Footer = () => {
         <div className='flex flex-col gap-y-24'>
           <div>
             <ul className='hidden lg:flex space-x-6 uppercase font-medium '>
-              {links.map((link, index) => {
-                const { id, text, url } = link
-                return (
-                  <li className='hover:text-orange' key={id}>
-                    <Link to={url}>{text}</Link>
-                  </li>
-                )
-              })}
+              {links &&
+                links.map((link, index) => {
+                  const { id, text, url } = link
+                  return (
+                    <li className='hover:text-orange' key={id}>
+                      <Link to={url}>{text}</Link>
+                    </li>
+                  )
+                })}
             </ul>
           </div>
           <div className=' hidden lg:flex space-x-6 ml-auto'>

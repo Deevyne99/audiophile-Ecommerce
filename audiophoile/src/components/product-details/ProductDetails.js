@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import { useGlobalContext } from '../context'
 import { Link, useNavigate, useLocation } from 'react-router-dom'
 
@@ -7,7 +7,6 @@ const ProductDetails = ({ id }) => {
   const location = useLocation()
   const { single_product, allProducts, singleProduct } = useGlobalContext()
   useEffect(() => {
-    // Perform your side effect here
     const fetchData = async () => {
       try {
         await singleProduct(id)
@@ -16,7 +15,7 @@ const ProductDetails = ({ id }) => {
       }
     }
     fetchData()
-  }, [])
+  }, [id])
   if (!single_product) {
     return (
       <div>
@@ -40,14 +39,14 @@ const ProductDetails = ({ id }) => {
     text,
     data,
   } = single_product
-  // const products = allProducts
-  //   .filter((item) => item.id !== Number(product_id))
-  //   .slice(0, 3)
+  const products =
+    allProducts &&
+    allProducts.filter((item) => item.id !== Number(product_id)).slice(0, 3)
 
-  // console.log(single_product)
+  console.log(products)
 
   return (
-    <section className='lg:mx-24 md:mx-14 mx-4 py-12'>
+    <section className='lg:mx-24 md:mx-14 mx-4 py-12 xl:mx-36'>
       <div className='flex flex-col'>
         <button
           className='capitalize opacity-50 flex items-start'
@@ -56,30 +55,43 @@ const ProductDetails = ({ id }) => {
           go back
         </button>
         <div className='flex flex-col sm:flex-row justify-between gap-4 sm:gap-8 md:gap-12 lg:gap-28 mt-10'>
-          <div className='flex flex-col items-center justify-center xl:w-1/2 lg:w-1/2 py-12 bg-grayColor w-full sm:w-1/2 md:w-1/2 h-[300px] sm:h-[350px]  rounded-md'>
+          <div className='flex flex-col items-center  justify-center xl:w-1/2 lg:w-1/2 py-12 bg-grayColor w-full sm:w-1/2 md:w-1/2 h-[300px] md:h-[400px] sm:h-[350px]  rounded-md'>
             <img src={img} className='hover:scale-110 max-w-[200px]' alt='' />
           </div>
-          <article className='flex flex-col justify-center w-full  sm:w-1/2 text-center sm:text-left items-center sm:items-start'>
+          <article className='flex flex-col justify-center w-full  sm:w-1/2 text-left sm:text-left  sm:items-start'>
             <p className='uppercase tracking-wide  text-sm font-thin text-orange '>
               new product
             </p>
             <h2 className='text-3xl uppercase font-bold max-w-sm mt-4'>
               {name}
             </h2>
-            <p className=' max-w-md md:max-w-sm my-6 md:my-10 text-sm opacity-50'>
+            <p className='max-w-sm sm:max-w-md md:max-w-sm my-t mt-4 sm:mt-6 text-sm opacity-50 leading-6'>
               {description}
             </p>
+            <strong className='mt-4 md:mt-6'>{price}</strong>
+            <div className='flex items-center gap-4  max-w-[280px]'>
+              <div className='flex bg-grayColor max-w-[120px] p-1 items-center mt-6 '>
+                <button className='w-[40px]  text-2xl opacity-25'>-</button>
+                <span className='w-[40px] text-center '>1</span>
+                <button className='w-[40px] text-2xl opacity-25'>+</button>
+              </div>
+              <button className='p-2 uppercase bg-orange hover:opacity-75 duration-500 w-[130px] text-white text-center mx-auto sm:mx-0 mt-6'>
+                add to cart
+              </button>
+            </div>
           </article>
         </div>
-        <div className='flex justify-between gap-12 items-start mt-24'>
-          <article className='flex flex-col w-1/2 gap-4'>
+        <div className='flex flex-col lg:flex-row justify-between gap-12 items-start mt-24'>
+          <article className='flex flex-col w-full lg:w-1/2 gap-4 leading-6'>
             <h2 className='uppercase text-2xl font-semibold'>features</h2>
             <p className='w-full text-sm text-black text-opacity-50'>{text}</p>
             <p className='w-full text-sm text-black text-opacity-50'>{data}</p>
           </article>
-          <div className='flex flex-col w-1/2 gap-4  items-center '>
-            <h2 className='uppercase text-2xl font-semibold '>in the box</h2>
-            <div className='flex w-full gap-4 justify-center ml-10 items-center'>
+          <div className='flex flex-col md:flex-row lg:flex-col  md:w-[400px] lg:w-1/2 gap-4 items-start lg:items-center  '>
+            <h2 className='uppercase text-2xl font-semibold w-full '>
+              in the box
+            </h2>
+            <div className='flex w-full gap-4 md:justify-center justify-start ml-0  md:ml-10 md:items-center items-start'>
               <div className='flex flex-col gap-1 '>
                 {size?.map((item, index) => {
                   // console.log(item)
@@ -90,7 +102,7 @@ const ProductDetails = ({ id }) => {
                   )
                 })}
               </div>
-              <div className='flex flex-col gap-1 text-sm  text-black text-opacity-50'>
+              <div className='flex flex-col gap-1 text-sm  text-black text-opacity-50 '>
                 {item?.map((item, index) => {
                   console.log(item)
                   return (
@@ -103,20 +115,52 @@ const ProductDetails = ({ id }) => {
             </div>
           </div>
         </div>
-        <div className='my-16 flex w-sm sm:w-md md:w-lg lg:w-xl justify-center   gap-4 items-center '>
-          <div className='flex  flex-col gap-4  h-[470px]  justify-center'>
-            <img src={images && images.image1} className='w-[320px]' alt='' />
-            <img src={images && images.image3} className='w-[320px]' alt='' />
+
+        <div className='my-16 flex flex-col sm:flex-row w-sm sm:w-md md:w-lg lg:w-xl justify-center   gap-4 items-center '>
+          <div className='flex  flex-col gap-4 h-auto md:h-[470px]  justify-center'>
+            <img
+              src={images && images.image1}
+              className='w-full md:w-[320px]'
+              alt=''
+            />
+            <img
+              src={images && images.image3}
+              className='w-full md:w-[320px]'
+              alt=''
+            />
           </div>
           <div className=''>
             <img
               src={images && images.image2}
               alt=''
-              className='h-[430px] object-contain '
+              className='h-auto max-w-full sm:max-w-xs md:max-w-full  md:h-[430px] object-contain '
             />
           </div>
         </div>
-        <div className='flex'></div>
+        <div className='flex md:flex-row flex-col gap-8 w-full items-center '>
+          {products.map((item) => {
+            const { name, img } = item
+            return (
+              <article className='flex flex-col items-center  justify-center  gap-4   w-full  '>
+                <div className='w-full flex bg-grayColor p-8 gap-4 items-center justify-center md:h-[300px] h-[250px] '>
+                  <img
+                    src={img}
+                    className='md:max-w-[120px]  lg:max-w-[150px] max-w-[150px]'
+                    alt=''
+                  />
+                </div>
+                <h2 className='text-center font-bold text-xl'>{name}</h2>
+                <Link
+                  to={`/product/${item.id}`}
+                  // onClick={()}
+                  className='p-2 uppercase bg-orange hover:opacity-75 duration-500 w-[130px] text-white text-center mx-auto sm:mx-0'
+                >
+                  see product
+                </Link>
+              </article>
+            )
+          })}
+        </div>
       </div>
     </section>
   )
