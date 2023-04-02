@@ -21,11 +21,12 @@ const reducer = (state, action) => {
     }
   }
   if (action.type === 'GET_SINGLE_PRODUCT') {
+    const tempProduct = state.allProducts.find(
+      (item) => item.id === Number(action.payload)
+    )
     return {
       ...state,
-      single_product: state.allProducts.find(
-        (item) => item.id === Number(action.payload)
-      ),
+      single_product: tempProduct,
     }
   }
   throw new Error(`No Matching "${action.type}" - action type`)

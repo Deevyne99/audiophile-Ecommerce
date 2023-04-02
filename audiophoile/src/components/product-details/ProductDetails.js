@@ -1,10 +1,33 @@
 import React, { useEffect } from 'react'
 import { useGlobalContext } from '../context'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
 
 const ProductDetails = ({ id }) => {
-  const { single_product, singleProduct } = useGlobalContext()
   const navigate = useNavigate()
+  const location = useLocation()
+  const { single_product, allProducts, singleProduct } = useGlobalContext()
+  useEffect(() => {
+    // Perform your side effect here
+    const fetchData = async () => {
+      try {
+        await singleProduct(id)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    fetchData()
+  }, [])
+  if (!single_product) {
+    return (
+      <div>
+        <h2>Something went wrong </h2>
+        <button
+          className='capitalize opacity-50 flex items-start'
+          onClick={() => navigate(-1)}
+        ></button>
+      </div>
+    )
+  }
   const {
     id: product_id,
     name,
@@ -12,13 +35,17 @@ const ProductDetails = ({ id }) => {
     img,
     images,
     price,
-    features,
+    size,
+    item,
+    text,
+    data,
   } = single_product
-  console.log(images)
-  console.log(single_product)
-  useEffect(() => {
-    singleProduct(id)
-  }, [id])
+  // const products = allProducts
+  //   .filter((item) => item.id !== Number(product_id))
+  //   .slice(0, 3)
+
+  // console.log(single_product)
+
   return (
     <section className='lg:mx-24 md:mx-14 mx-4 py-12'>
       <div className='flex flex-col'>
@@ -44,6 +71,52 @@ const ProductDetails = ({ id }) => {
             </p>
           </article>
         </div>
+        <div className='flex justify-between gap-12 items-start mt-24'>
+          <article className='flex flex-col w-1/2 gap-4'>
+            <h2 className='uppercase text-2xl font-semibold'>features</h2>
+            <p className='w-full text-sm text-black text-opacity-50'>{text}</p>
+            <p className='w-full text-sm text-black text-opacity-50'>{data}</p>
+          </article>
+          <div className='flex flex-col w-1/2 gap-4  items-center '>
+            <h2 className='uppercase text-2xl font-semibold '>in the box</h2>
+            <div className='flex w-full gap-4 justify-center ml-10 items-center'>
+              <div className='flex flex-col gap-1 '>
+                {size?.map((item, index) => {
+                  // console.log(item)
+                  return (
+                    <p key={index} className='text-orange text-sm font-bold'>
+                      {item}
+                    </p>
+                  )
+                })}
+              </div>
+              <div className='flex flex-col gap-1 text-sm  text-black text-opacity-50'>
+                {item?.map((item, index) => {
+                  console.log(item)
+                  return (
+                    <p key={index} className=''>
+                      {item}
+                    </p>
+                  )
+                })}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className='my-16 flex w-sm sm:w-md md:w-lg lg:w-xl justify-center   gap-4 items-center '>
+          <div className='flex  flex-col gap-4  h-[470px]  justify-center'>
+            <img src={images && images.image1} className='w-[320px]' alt='' />
+            <img src={images && images.image3} className='w-[320px]' alt='' />
+          </div>
+          <div className=''>
+            <img
+              src={images && images.image2}
+              alt=''
+              className='h-[430px] object-contain '
+            />
+          </div>
+        </div>
+        <div className='flex'></div>
       </div>
     </section>
   )

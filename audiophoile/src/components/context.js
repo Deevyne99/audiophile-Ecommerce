@@ -28,9 +28,11 @@ export const AppProvider = ({ children }) => {
   const singleProduct = (id) => {
     dispatch({ type: 'GET_SINGLE_PRODUCT', payload: id })
   }
+
   useEffect(() => {
     getAllProducts()
   }, [])
+
   return (
     <AppContext.Provider
       value={{ ...state, toggleSideBar, getProducts, singleProduct }}
