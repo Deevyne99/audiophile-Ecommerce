@@ -25,7 +25,7 @@ const Product = ({ name }) => {
               >
                 <div className='flex flex-col items-center justify-center xl:w-1/2 lg:w-1/2 py-8 sm:py-12 bg-grayColor w-full sm:w-1/2 md:w-1/2 h-[300px] sm:h-[350px]  rounded-md'>
                   <img
-                    className='hover:scale-110 max-w-[200px] '
+                    className='hover:scale-105 sm:hover:scale-110 max-w-[200px] '
                     src={img}
                     alt=''
                   />

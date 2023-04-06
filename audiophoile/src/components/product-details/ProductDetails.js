@@ -56,7 +56,11 @@ const ProductDetails = ({ id }) => {
         </button>
         <div className='flex flex-col sm:flex-row justify-between gap-4 sm:gap-8 md:gap-12 lg:gap-28 mt-10'>
           <div className='flex flex-col items-center  justify-center xl:w-1/2 lg:w-1/2 py-12 bg-grayColor w-full sm:w-1/2 md:w-1/2 h-[300px] md:h-[400px] sm:h-[350px]  rounded-md'>
-            <img src={img} className='hover:scale-110 max-w-[200px]' alt='' />
+            <img
+              src={img}
+              className='hover:scale-105 sm:hover:scale-110 max-w-[200px]'
+              alt=''
+            />
           </div>
           <article className='flex flex-col justify-center w-full  sm:w-1/2 text-left sm:text-left  sm:items-start'>
             <p className='uppercase tracking-wide  text-sm font-thin text-orange '>
@@ -116,25 +120,13 @@ const ProductDetails = ({ id }) => {
           </div>
         </div>
 
-        <div className='my-16 flex flex-col sm:flex-row w-sm sm:w-md md:w-lg lg:w-xl justify-center   gap-4 items-center '>
-          <div className='flex  flex-col gap-4 h-auto md:h-[470px]  justify-center'>
-            <img
-              src={images && images.image1}
-              className='w-full md:w-[320px]'
-              alt=''
-            />
-            <img
-              src={images && images.image3}
-              className='w-full md:w-[320px]'
-              alt=''
-            />
+        <div className='md:my-48 my-16 flex flex-col sm:flex-row  justify-center   gap-4 items-center '>
+          <div className='flex w-full md:w-1/2 flex-col gap-4 h-auto md:h-[470px]  justify-center'>
+            <img src={images && images.image1} className='w-full ' alt='' />
+            <img src={images && images.image3} className='w-full ' alt='' />
           </div>
-          <div className=''>
-            <img
-              src={images && images.image2}
-              alt=''
-              className='h-auto max-w-full sm:max-w-xs md:max-w-full  md:h-[430px] object-contain '
-            />
+          <div className='w-full md:w-1/2'>
+            <img src={images && images.image2} alt='' className='w-full' />
           </div>
         </div>
         <div className='flex md:flex-row flex-col gap-8 w-full items-center '>
@@ -149,7 +141,7 @@ const ProductDetails = ({ id }) => {
                     alt=''
                   />
                 </div>
-                <h2 className='text-center font-bold text-xl'>{name}</h2>
+                <h2 className='text-center font-semibold text-xl'>{name}</h2>
                 <Link
                   to={`/product/${item.id}`}
                   // onClick={()}

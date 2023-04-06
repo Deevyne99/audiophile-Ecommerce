@@ -5,7 +5,7 @@ import { FaInstagram, FaFacebookSquare, FaTwitter } from 'react-icons/fa'
 const Footer = () => {
   const { links } = useGlobalContext()
   return (
-    <footer className='bg-footerColor relative py-12 text-white mt-24'>
+    <footer className='bg-footerColor relative py-12 text-white '>
       <div className='h-[4px] absolute top-0 lg:mx-24 xl:mx-32 md:mx-16 mx-auto left-0 right-0 bg-orange w-[100px]'></div>
       <div className='flex flex-col lg:flex-row justify-center    md:justify-between mx-4 lg:mx-24 md:mx-16 xl:mx-32'>
         <article className='flex flex-col   space-y-8'>

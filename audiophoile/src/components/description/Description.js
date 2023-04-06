@@ -2,7 +2,7 @@ import React from 'react'
 import user from '../../images/user.png'
 const Description = () => {
   return (
-    <section className='lg:mx-24 mx-4 md:mx-16 xl:mx-36'>
+    <section className='lg:mx-24 mx-4 md:mx-16 xl:mx-36 mb-24'>
       <div className='flex  flex-col-reverse lg:flex-row justify-between gap-12 items-center'>
         <article className='w-full lg:w-1/2 flex flex-col justify-center items-center lg:items-start lg:text-left lg:justify-between '>
           <h3 className='uppercase text-center lg:text-left font-semibold text-3xl lg:text-4xl max-w-sm'>
