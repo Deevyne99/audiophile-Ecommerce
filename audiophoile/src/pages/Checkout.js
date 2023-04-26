@@ -3,6 +3,7 @@ import { Link, useNavigate, useLocation } from 'react-router-dom'
 
 const Checkout = () => {
   const navigate = useNavigate()
+  const [payment, setPayment] = React.useState()
   return (
     <section className='bg-grayColor '>
       <div className='flex flex-col xl:mx-32 lg:mx-24 mx-4 py-12'>
@@ -20,7 +21,7 @@ const Checkout = () => {
                 <h5 className='text-orange uppercase font-semibold'>
                   Billing Details
                 </h5>
-                <div className='flex gap-8'>
+                <div className='flex gap-8 '>
                   <div className='flex flex-col gap-1 w-1/2'>
                     <label htmlFor='name' className='font-semibold'>
                       Name
@@ -102,6 +103,36 @@ const Checkout = () => {
                     />
                   </div>
                   <div className='w-1/2 '></div>
+                </div>
+                <div className='flex flex-col mt-6'>
+                  <h5 className='text-orange uppercase font-semibold'>
+                    payment details
+                  </h5>
+                  <div className='flex gap-8'>
+                    <div className='w-1/2 '></div>
+                    <div className='w-1/2  flex flex-col gap-2'>
+                      <div className='flex items-center w-full gap-2 p-2 border-[1px] rounded-md'>
+                        <input
+                          type='radio'
+                          name='eMoney'
+                          value='eMoney'
+                          id=''
+                          onChange={(e) => setPayment(e.target.value)}
+                        />
+                        <label htmlFor='eMoney'>e-Money</label>
+                      </div>
+                      <div className='flex items-center w-full gap-2 p-2 border-[1px] rounded-md'>
+                        <input
+                          type='radio'
+                          name='cashDelivery'
+                          value='cashDelivery'
+                          id=''
+                          onChange={(e) => setPayment(e.target.value)}
+                        />
+                        <label htmlFor='cashDelivery'>Cash on Delivery</label>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </form>

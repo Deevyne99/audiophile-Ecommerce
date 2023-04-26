@@ -1,11 +1,20 @@
 import React, { useCallback, useEffect } from 'react'
 import { useGlobalContext } from '../context'
-import { Link, useNavigate, useLocation } from 'react-router-dom'
+import { formatPrice } from '../../utilis/Price'
+import { Link, useNavigate } from 'react-router-dom'
 
 const ProductDetails = ({ id }) => {
   const navigate = useNavigate()
-  const location = useLocation()
-  const { single_product, allProducts, singleProduct } = useGlobalContext()
+
+  const {
+    single_product,
+    allProducts,
+    singleProduct,
+    increaseAmount,
+    decreaseAmount,
+    amount,
+    AddToCart,
+  } = useGlobalContext()
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -43,7 +52,7 @@ const ProductDetails = ({ id }) => {
     allProducts &&
     allProducts.filter((item) => item.id !== Number(product_id)).slice(0, 3)
 
-  console.log(products)
+  // console.log(products)
 
   return (
     <section className='lg:mx-24 md:mx-14 mx-4 py-12 xl:mx-36'>
@@ -72,14 +81,27 @@ const ProductDetails = ({ id }) => {
             <p className='max-w-sm sm:max-w-md md:max-w-sm my-t mt-4 sm:mt-6 text-sm opacity-50 leading-6'>
               {description}
             </p>
-            <strong className='mt-4 md:mt-6'>{price}</strong>
+            <strong className='mt-4 md:mt-6'>{formatPrice(price)}</strong>
             <div className='flex items-center gap-4  max-w-[280px]'>
               <div className='flex bg-grayColor max-w-[120px] p-1 items-center mt-6 '>
-                <button className='w-[40px]  text-2xl opacity-25'>-</button>
-                <span className='w-[40px] text-center '>1</span>
-                <button className='w-[40px] text-2xl opacity-25'>+</button>
+                <button
+                  className='w-[40px]  text-2xl opacity-25'
+                  onClick={decreaseAmount}
+                >
+                  -
+                </button>
+                <span className='w-[40px] text-center '>{amount}</span>
+                <button
+                  className='w-[40px] text-2xl opacity-25'
+                  onClick={increaseAmount}
+                >
+                  +
+                </button>
               </div>
-              <button className='p-2 uppercase bg-orange hover:opacity-75 duration-500 w-[130px] text-white text-center mx-auto sm:mx-0 mt-6'>
+              <button
+                className='p-2 uppercase bg-orange hover:opacity-75 duration-500 w-[130px] text-white text-center mx-auto sm:mx-0 mt-6'
+                onClick={() => AddToCart(product_id, single_product, amount)}
+              >
                 add to cart
               </button>
             </div>
@@ -91,11 +113,11 @@ const ProductDetails = ({ id }) => {
             <p className='w-full text-sm text-black text-opacity-50'>{text}</p>
             <p className='w-full text-sm text-black text-opacity-50'>{data}</p>
           </article>
-          <div className='flex flex-col md:flex-row lg:flex-col  md:w-[400px] lg:w-1/2 gap-4 items-start lg:items-center  '>
-            <h2 className='uppercase text-2xl font-semibold w-full '>
+          <div className='flex flex-col md:flex-row lg:flex-col  md:w-[500px] lg:w-1/2 gap-4 items-start  lg:items-center  '>
+            <h2 className='uppercase text-left md:text-center text-2xl font-semibold w-full '>
               in the box
             </h2>
-            <div className='flex w-full gap-4 md:justify-center justify-start ml-0  md:ml-10 md:items-center items-start'>
+            <div className='flex w-full gap-4 md:justify-center justify-start ml-0  md:ml-10 md:items-center items-start '>
               <div className='flex flex-col gap-1 '>
                 {size?.map((item, index) => {
                   // console.log(item)
@@ -108,7 +130,7 @@ const ProductDetails = ({ id }) => {
               </div>
               <div className='flex flex-col gap-1 text-sm  text-black text-opacity-50 '>
                 {item?.map((item, index) => {
-                  console.log(item)
+                  // console.log(item)
                   return (
                     <p key={index} className=''>
                       {item}
@@ -120,7 +142,7 @@ const ProductDetails = ({ id }) => {
           </div>
         </div>
 
-        <div className='md:my-48 my-16 flex flex-col sm:flex-row  justify-center   gap-4 items-center '>
+        <div className='md:my-48 my-16 flex flex-col sm:flex-row    gap-4  '>
           <div className='flex w-full md:w-1/2 flex-col gap-4 h-auto md:h-[470px]  justify-center'>
             <img src={images && images.image1} className='w-full ' alt='' />
             <img src={images && images.image3} className='w-full ' alt='' />
@@ -130,10 +152,13 @@ const ProductDetails = ({ id }) => {
           </div>
         </div>
         <div className='flex md:flex-row flex-col gap-8 w-full items-center '>
-          {products.map((item) => {
+          {products.map((item, index) => {
             const { name, img } = item
             return (
-              <article className='flex flex-col items-center  justify-center  gap-4   w-full  '>
+              <article
+                key={index}
+                className='flex flex-col items-center  justify-center  gap-4   w-full  '
+              >
                 <div className='w-full flex bg-grayColor p-8 gap-4 items-center justify-center md:h-[300px] h-[250px] '>
                   <img
                     src={img}
