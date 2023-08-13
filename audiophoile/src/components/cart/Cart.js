@@ -3,9 +3,17 @@ import { useGlobalContext } from '../context'
 import { formatPrice } from '../../utilis/Price'
 import { Link } from 'react-router-dom'
 const Cart = () => {
-  const { cart, total_items, OpenCart, ClearCart } = useGlobalContext()
+  const {
+    cart,
+    total_items,
+    OpenCart,
+    ClearCart,
+    total_amount,
+    increaseCart,
+    decreaseCart,
+  } = useGlobalContext()
   return (
-    <div className='fixed flex-col max-w-[400px] left-0 p-6 top-24  md:top-24 lg:right-36 right-0 z-40 md:right-16 bg-white rounded-md flex transition-all duration-100 mx-auto md:mx-0 md:left-auto'>
+    <div className='fixed flex-col max-w-[340px] xs:max-w-[340px] sm:max-w-[400px] left-0 p-6 top-24  md:top-24 lg:right-36 right-0 z-40 md:right-16 bg-white rounded-md flex transition-all duration-100 mx-auto md:mx-0 md:left-auto w-full'>
       <div className='flex justify-between w-full  items-center '>
         <strong className='capitalize'>cart ({total_items})</strong>
         <button type='button' onClick={ClearCart}>
@@ -31,15 +39,30 @@ const Cart = () => {
                 </div>
                 <div>
                   <div className='flex bg-grayColor max-w-[70px] p-1 items-center  '>
-                    <button className='w-[40px]  text-2xl opacity-25'>-</button>
+                    <button
+                      className='w-[40px]  text-2xl opacity-25'
+                      onClick={() => decreaseCart(item.id)}
+                    >
+                      -
+                    </button>
                     <span className='w-[40px] text-center '>{item.amount}</span>
-                    <button className='w-[40px] text-2xl opacity-25'>+</button>
+                    <button
+                      className='w-[40px] text-2xl opacity-25'
+                      onClick={() => increaseCart(item.id)}
+                    >
+                      +
+                    </button>
                   </div>
                 </div>
               </div>
             )
           })}
+          <div className='flex justify-between'>
+            <p>Total</p>
+            <p>{formatPrice(total_amount)}</p>
+          </div>
         </div>
+
         <Link
           to={'/checkout'}
           className='uppercase p-3 w-full bg-orange hover:opacity-75 duration-500  text-white text-center mx-auto sm:mx-0 mt-6'

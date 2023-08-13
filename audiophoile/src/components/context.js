@@ -64,6 +64,12 @@ export const AppProvider = ({ children }) => {
   const OpenCart = () => {
     dispatch({ type: 'OPEN_CART' })
   }
+  const increaseCart = (id) => {
+    dispatch({ type: 'INCREASE_AMOUNT', payload: id })
+  }
+  const decreaseCart = (id) => {
+    dispatch({ type: 'DECREASE_AMOUNT', payload: id })
+  }
   useEffect(() => {
     getAllProducts()
   }, [])
@@ -84,6 +90,8 @@ export const AppProvider = ({ children }) => {
         AddToCart,
         OpenCart,
         ClearCart,
+        increaseCart,
+        decreaseCart,
       }}
     >
       {children}
