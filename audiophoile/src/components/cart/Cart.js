@@ -13,7 +13,7 @@ const Cart = () => {
     decreaseCart,
   } = useGlobalContext()
   return (
-    <div className='fixed flex-col max-w-[340px] xs:max-w-[340px] sm:max-w-[400px] left-0 p-6 top-24  md:top-24 lg:right-36 right-0 z-40 md:right-16 bg-white rounded-md flex transition-all duration-100 mx-auto md:mx-0 md:left-auto w-full'>
+    <div className='fixed flex-col max-w-[300px] xs:max-w-[300px] sm:max-w-[400px] left-0 p-6 top-24  md:top-24 lg:right-36 right-0 z-40 md:right-16 bg-white rounded-md flex transition-all duration-100 mx-auto md:mx-0 md:left-auto w-full'>
       <div className='flex justify-between w-full  items-center '>
         <strong className='capitalize'>cart ({total_items})</strong>
         <button type='button' onClick={ClearCart}>

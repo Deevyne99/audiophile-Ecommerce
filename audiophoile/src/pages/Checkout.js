@@ -1,9 +1,11 @@
 import React from 'react'
 import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { useGlobalContext } from '../components/context'
+import { formatPrice } from '../utilis/Price'
 
 const Checkout = () => {
-  const { cart, shipping_fee } = useGlobalContext()
+  const { cart, shipping_fee, total_amount } = useGlobalContext()
+  console.log(cart)
   const navigate = useNavigate()
   const [payment, setPayment] = React.useState()
   return (
@@ -16,7 +18,7 @@ const Checkout = () => {
           go back
         </button>
         <div className='flex flex-col md:flex-row gap-6 items-start my-10'>
-          <div className='flex flex-col w-full lg:w-2/3 bg-white px-4 py-10 md:px-10 md:py-10 gap-8  rounded-md'>
+          <div className='flex flex-col w-full md:w-2/3 lg:w-2/3 bg-white px-4 py-10 md:px-10 md:py-10 gap-8  rounded-md'>
             <h2 className='text-3xl font-semibold uppercase'>Checkout</h2>
             <form action=''>
               <div className='flex flex-col gap-4'>
@@ -139,10 +141,50 @@ const Checkout = () => {
               </div>
             </form>
           </div>
-          <div className='flex flex-col w-full md:w-1/3 bg-white rounded-md p-4'>
-            {' '}
-            hello world
-          </div>
+          <article className='flex flex-col w-full md:w-2/5 bg-white rounded-md p-4 gap-4'>
+            <h2 className='uppercase font-bold'>summary</h2>
+            {cart.map((item, index) => {
+              const { img, name, price, amount } = item
+              return (
+                <div className='flex   justify-between ' key={index}>
+                  <div className='flex items-center gap-4'>
+                    <div className='bg-grayColor p-2 rounded-md'>
+                      <img src={img} alt='' className='w-[50px]' />
+                    </div>
+                    <div className='flex-col flex gap-2'>
+                      <p className='font-bold'>{name}</p>
+                      <p>${price}</p>
+                    </div>
+                  </div>
+                  <p>x{amount}</p>
+                </div>
+              )
+            })}
+            <div className='flex justify-between'>
+              <p className='text-[#000] opacity-50 '>TOTAL</p>
+              <p className='font-bold'>{formatPrice(total_amount)}</p>
+            </div>
+            <div className='flex justify-between'>
+              <p className='text-[#000] opacity-50 '>SHIPPING</p>
+              <p className='font-bold'>{formatPrice(shipping_fee)}</p>
+            </div>
+            <div className='flex justify-between'>
+              <p className='text-[#000] opacity-50 '>VAT(Included)</p>
+              <p className='font-bold'>{formatPrice(total_amount / 5)}</p>
+            </div>
+            <div className='flex justify-between'>
+              <p className='text-[#000] opacity-50 '>GRAND TOTAL</p>
+              <p className='font-bold text-[#D87D4A]'>
+                {formatPrice(total_amount + 50)}
+              </p>
+            </div>
+            <button
+              to={'/checkout'}
+              className='uppercase p-3 w-full bg-orange hover:opacity-75 duration-500  text-white text-center mx-auto sm:mx-0 mt-6'
+            >
+              continue
+            </button>
+          </article>
         </div>
       </div>
     </section>

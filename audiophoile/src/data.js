@@ -154,7 +154,7 @@ export const links = [
   { id: 2, text: 'headphones', url: '/headphones' },
   { id: 3, text: 'speakers', url: '/speakers' },
   { id: 4, text: 'earphones', url: '/earphones' },
-  { id: 5, text: 'checkout', url: '/checkout' },
+  // { id: 5, text: 'checkout', url: '/checkout' },
 ]
 
 export const shop = [
