@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { useGlobalContext } from '../components/context'
 import { formatPrice } from '../utilis/Price'
+import Shape from '../images/Shape.png'
 
 const Checkout = () => {
   const { cart, shipping_fee, total_amount } = useGlobalContext()
@@ -15,10 +16,14 @@ const Checkout = () => {
     zipCode: '',
     city: '',
     country: '',
+    card: '',
+    pin: '',
   }
   const [payment, setPayment] = React.useState()
   const [formValues, setFormValues] = useState(initialState)
   const [isSubmit, setIsSubmit] = useState(false)
+  const [cash, setCash] = useState(true)
+  const [eMoney, setEmoney] = useState(false)
 
   const [formErrors, setFormErrors] = useState({})
   // const checkout = async () => {
@@ -38,6 +43,14 @@ const Checkout = () => {
   //       }
   //     })
   // }
+  const cashTransaction = () => {
+    setCash(true)
+    setEmoney(false)
+  }
+  const eTransaction = () => {
+    setEmoney(true)
+    setCash(false)
+  }
   const handleChange = (e) => {
     const { name, value } = e.target
     setFormValues({ ...formValues, [name]: value })
@@ -69,6 +82,12 @@ const Checkout = () => {
     }
     if (!values.country) {
       errors.country = 'country is required'
+    }
+    if (!values.card) {
+      errors.card = 'Card is required'
+    }
+    if (!values.pin) {
+      errors.pin = 'Pin is required'
     }
     return errors
   }
@@ -268,29 +287,98 @@ const Checkout = () => {
                     <div className='w-1/2 '></div>
                     <div className='w-1/2  flex flex-col gap-2'>
                       <div className='flex items-center w-full gap-2 p-2 border-[1px] rounded-md'>
-                        <input
-                          type='radio'
-                          name='eMoney'
-                          value='eMoney'
-                          id=''
-                          onChange={(e) => setPayment(e.target.value)}
-                        />
-                        <label htmlFor='eMoney'>e-Money</label>
+                        <div
+                          className='flex items-center gap-2'
+                          onClick={() => eTransaction()}
+                        >
+                          <div className='w-[20px] flex justify-center items-center h-[20px] rounded-[50%] border-[1px]'>
+                            <div
+                              className={`w-[10px] h-[10px] rounded-[50%] border-[1px] ${
+                                eMoney ? 'bg-[#D87D4A]' : ''
+                              }`}
+                            ></div>
+                          </div>{' '}
+                          e-money
+                        </div>
                       </div>
                       <div className='flex items-center w-full gap-2 p-2 border-[1px] rounded-md'>
-                        <input
-                          type='radio'
-                          name='cashDelivery'
-                          value='cashDelivery'
-                          id=''
-                          onChange={(e) => setPayment(e.target.value)}
-                        />
-                        <label htmlFor='cashDelivery'>Cash on Delivery</label>
+                        <div
+                          className='flex items-center gap-2'
+                          onClick={() => cashTransaction()}
+                        >
+                          <div className='w-[20px] flex justify-center items-center h-[20px] rounded-[50%] border-[1px]'>
+                            <div
+                              className={`w-[10px] h-[10px] rounded-[50%] border-[1px] ${
+                                cash ? 'bg-[#D87D4A]' : ''
+                              }`}
+                            ></div>
+                          </div>{' '}
+                          Cash on Delivery
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
+              {cash && (
+                <div className='mt-12 flex flex-col md:flex-row gap-6  md:gap-12 items-center leading-6 text-sm text-[#000] opacity-50'>
+                  <img src={Shape} alt='' />
+                  <p>
+                    The ‘Cash on Delivery’ option enables you to pay in cash
+                    when our delivery courier arrives at your residence. Just
+                    make sure your address is correct so that your order will
+                    not be cancelled.
+                  </p>
+                </div>
+              )}
+
+              {eMoney && (
+                <div className='flex flex-col md:flex-row gap-8 mt-12'>
+                  <div className='flex flex-col gap-1 w-full md:w-1/2'>
+                    <label
+                      htmlFor='name'
+                      className='font-semibold flex justify-between'
+                    >
+                      e-Money Number
+                      <small className='text-[#CD2C2C] ml-auto '>
+                        {formErrors.card}
+                      </small>
+                    </label>
+                    <input
+                      type='text'
+                      placeholder='Alexander John'
+                      className={`p-2  border-[1px] rounded-md w-full ${
+                        formErrors.card ? 'border-[#cd2c2c] border-[2px]' : ''
+                      }`}
+                      name='card'
+                      value={formValues.card}
+                      onChange={handleChange}
+                    />
+                  </div>
+
+                  <div className='flex flex-col gap-1 w-full md:w-1/2'>
+                    <label
+                      htmlFor='name'
+                      className='font-semibold flex justify-between'
+                    >
+                      e-Money Pin
+                      <small className='text-[#CD2C2C] ml-auto '>
+                        {formErrors.pin}
+                      </small>
+                    </label>
+                    <input
+                      type='email'
+                      placeholder='alexander@gmail.com'
+                      className={`p-2  border-[1px] rounded-md w-full ${
+                        formErrors.pin ? 'border-[#cd2c2c] border-[2px]' : ''
+                      }`}
+                      name='pin'
+                      value={formValues.pin}
+                      onChange={handleChange}
+                    />
+                  </div>
+                </div>
+              )}
             </form>
           </div>
           <article className='flex flex-col w-full md:w-2/5 bg-white rounded-md p-4 gap-4'>
