@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { useGlobalContext } from '../components/context'
 import { formatPrice } from '../utilis/Price'
@@ -7,7 +7,78 @@ const Checkout = () => {
   const { cart, shipping_fee, total_amount } = useGlobalContext()
   console.log(cart)
   const navigate = useNavigate()
+  const initialState = {
+    name: '',
+    email: '',
+    address: '',
+    phone: '',
+    zipCode: '',
+    city: '',
+    country: '',
+  }
   const [payment, setPayment] = React.useState()
+  const [formValues, setFormValues] = useState(initialState)
+  const [isSubmit, setIsSubmit] = useState(false)
+
+  const [formErrors, setFormErrors] = useState({})
+  // const checkout = async () => {
+  //   await fetch('http://localhost:4000/purchase', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify({ items: cart }),
+  //   })
+  //     .then((response) => {
+  //       return response.json()
+  //     })
+  //     .then((response) => {
+  //       if (response.url) {
+  //         window.location.assign(response.url) // Forwarding user to Stripe
+  //       }
+  //     })
+  // }
+  const handleChange = (e) => {
+    const { name, value } = e.target
+    setFormValues({ ...formValues, [name]: value })
+  }
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    setFormErrors(validate(formValues))
+    setIsSubmit(true)
+  }
+  const validate = (values) => {
+    const errors = {}
+    if (!values.name) {
+      errors.name = 'Name is required'
+    }
+    if (!values.email) {
+      errors.email = 'Email is required'
+    }
+    if (!values.phone) {
+      errors.phone = 'Phone Number is required'
+    }
+    if (!values.address) {
+      errors.address = 'address is required'
+    }
+    if (!values.zipCode) {
+      errors.zipCode = 'zipcode is required'
+    }
+    if (!values.city) {
+      errors.city = 'city is required'
+    }
+    if (!values.country) {
+      errors.country = 'country is required'
+    }
+    return errors
+  }
+
+  useEffect(() => {
+    console.log(formErrors)
+    if (Object.keys(formErrors).length === 0 && isSubmit) {
+      console.log(formValues)
+    }
+  }, [formErrors, isSubmit])
   return (
     <section className='bg-grayColor '>
       <div className='flex flex-col xl:mx-32 lg:mx-24 mx-4 py-12'>
@@ -25,37 +96,70 @@ const Checkout = () => {
                 <h5 className='text-orange uppercase font-semibold'>
                   Billing Details
                 </h5>
-                <div className='flex flex-col md:flex-row gap-8 '>
-                  <div className='flex flex-col gap-1 md:w-1/2 lg:w-full'>
-                    <label htmlFor='name' className='font-semibold'>
+                <div className='flex flex-col md:flex-row gap-8'>
+                  <div className='flex flex-col gap-1 w-full md:w-1/2'>
+                    <label
+                      htmlFor='name'
+                      className='font-semibold flex justify-between'
+                    >
                       Name
+                      <small className='text-[#CD2C2C] ml-auto '>
+                        {formErrors.name}
+                      </small>
                     </label>
                     <input
                       type='text'
                       placeholder='Alexander John'
-                      className='p-2  border-[1px] rounded-md w-full'
+                      className={`p-2  border-[1px] rounded-md w-full ${
+                        formErrors.name ? 'border-[#cd2c2c] border-[2px]' : ''
+                      }`}
+                      name='name'
+                      value={formValues.name}
+                      onChange={handleChange}
                     />
                   </div>
-                  <div className='flex flex-col gap-1 md:w-1/2 w-full'>
-                    <label htmlFor='email' className='font-semibold'>
-                      Email Address
+                  <div className='flex flex-col gap-1 w-full md:w-1/2'>
+                    <label
+                      htmlFor='name'
+                      className='font-semibold flex justify-between'
+                    >
+                      Email
+                      <small className='text-[#CD2C2C] ml-auto '>
+                        {formErrors.email}
+                      </small>
                     </label>
                     <input
                       type='email'
                       placeholder='alexander@gmail.com'
-                      className='p-2 border-[1px] rounded-md w-full'
+                      className={`p-2  border-[1px] rounded-md w-full ${
+                        formErrors.name ? 'border-[#cd2c2c] border-[2px]' : ''
+                      }`}
+                      name='email'
+                      value={formValues.email}
+                      onChange={handleChange}
                     />
                   </div>
                 </div>
                 <div className='flex flex-col md:flex-row gap-8'>
                   <div className='flex flex-col gap-1 md:w-1/2 w-full'>
-                    <label htmlFor='phone' className='font-semibold'>
+                    <label
+                      htmlFor='name'
+                      className='font-semibold flex justify-between'
+                    >
                       Phone Number
+                      <small className='text-[#CD2C2C] ml-auto '>
+                        {formErrors.phone}
+                      </small>
                     </label>
                     <input
-                      type='text'
+                      type='number'
                       placeholder='+2348148158802'
-                      className='p-2 border-[1px] rounded-md w-full '
+                      className={`p-2  border-[1px] rounded-md w-full ${
+                        formErrors.phone ? 'border-[#cd2c2c] border-[2px]' : ''
+                      }`}
+                      name='phone'
+                      value={formValues.phone}
+                      onChange={handleChange}
                     />
                   </div>
                   <div className='w-1/2 '></div>
@@ -64,46 +168,94 @@ const Checkout = () => {
                   <h5 className='text-orange uppercase font-semibold mb-4'>
                     shipping info
                   </h5>
-                  <label htmlFor='address' className='font-semibold '>
+                  <label
+                    htmlFor='name'
+                    className='font-semibold flex justify-between'
+                  >
                     Address
+                    <small className='text-[#CD2C2C] ml-auto '>
+                      {formErrors.address}
+                    </small>
                   </label>
                   <input
-                    type='email'
+                    type='text'
                     placeholder='Zaria Road'
-                    className='p-2 border-[1px] rounded-md w-full '
+                    className={`p-2  border-[1px] rounded-md w-full ${
+                      formErrors.address ? 'border-[#cd2c2c] border-[2px]' : ''
+                    }`}
+                    name='address'
+                    value={formValues.address}
+                    onChange={handleChange}
                   />
                 </div>
                 <div className='flex flex-col md:flex-row gap-8'>
                   <div className='flex flex-col gap-1 w-full md:w-1/2'>
-                    <label htmlFor='name' className='font-semibold'>
-                      Zip Code
+                    <label
+                      htmlFor='name'
+                      className='font-semibold flex justify-between'
+                    >
+                      ZipCode
+                      <small className='text-[#CD2C2C] ml-auto '>
+                        {formErrors.zipCode}
+                      </small>
                     </label>
                     <input
                       type='text'
                       placeholder='Alexander John'
-                      className='p-2  border-[1px] rounded-md w-full'
+                      className={`p-2  border-[1px] rounded-md w-full ${
+                        formErrors.zipCode
+                          ? 'border-[#cd2c2c] border-[2px]'
+                          : ''
+                      }`}
+                      name='zipCode'
+                      value={formValues.zipCode}
+                      onChange={handleChange}
                     />
                   </div>
                   <div className='flex flex-col gap-1 w-full md:w-1/2'>
-                    <label htmlFor='name' className='font-semibold'>
+                    <label
+                      htmlFor='name'
+                      className='font-semibold flex justify-between'
+                    >
                       City
+                      <small className='text-[#CD2C2C] ml-auto '>
+                        {formErrors.city}
+                      </small>
                     </label>
                     <input
                       type='text'
                       placeholder='alexander@gmail.com'
-                      className='p-2 border-[1px] rounded-md w-full'
+                      className={`p-2  border-[1px] rounded-md w-full ${
+                        formErrors.city ? 'border-[#cd2c2c] border-[2px]' : ''
+                      }`}
+                      name='city'
+                      value={formValues.city}
+                      onChange={handleChange}
                     />
                   </div>
                 </div>
                 <div className='flex flex-col md:flex-row gap-8'>
                   <div className='flex flex-col gap-1 w-full md:w-1/2'>
-                    <label htmlFor='name' className='font-semibold'>
+                    <label
+                      htmlFor='name'
+                      className='font-semibold flex justify-between'
+                    >
                       Country
+                      <small className='text-[#CD2C2C] ml-auto '>
+                        {formErrors.country}
+                      </small>
                     </label>
                     <input
                       type='text'
-                      placeholder='+2348148158802'
-                      className='p-2 border-[1px] rounded-md w-full '
+                      placeholder='Nigeria'
+                      className={`p-2  border-[1px] rounded-md w-full ${
+                        formErrors.country
+                          ? 'border-[#cd2c2c] border-[2px]'
+                          : ''
+                      }`}
+                      name='country'
+                      value={formValues.country}
+                      onChange={handleChange}
                     />
                   </div>
                   <div className='w-1/2 '></div>
@@ -179,8 +331,9 @@ const Checkout = () => {
               </p>
             </div>
             <button
-              to={'/checkout'}
               className='uppercase p-3 w-full bg-orange hover:opacity-75 duration-500  text-white text-center mx-auto sm:mx-0 mt-6'
+              onClick={handleSubmit}
+              type='button'
             >
               continue
             </button>

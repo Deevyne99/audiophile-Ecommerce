@@ -33,7 +33,7 @@ const Hero = () => {
             alt='earphone'
           />
           <img
-            className='flex animate-bounce  sm:ml-[-50px]  sm:max-w-[450px] md:hidden bg-black'
+            className='flex animate-bounc  sm:ml-[-50px]  sm:max-w-[450px] md:hidden bg-black'
             src={smallEarphone}
             alt=''
           />

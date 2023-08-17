@@ -9,6 +9,7 @@ import Details from './pages/Details'
 import Earphone from './pages/Earphone'
 import Checkout from './pages/Checkout'
 import Error from './pages/Error'
+import Success from './pages/Success'
 
 function App() {
   // const data = useGlobalContext()
@@ -23,6 +24,7 @@ function App() {
           <Route path='/speakers' element={<Speaker />} />
           <Route path='/earphones' element={<Earphone />} />
           <Route path='/checkout' element={<Checkout />} />
+          <Route path='/success' element={<Success />} />
           <Route path='/product/:id' element={<Details />} />
           <Route path='*' element={<Error />} />
         </Routes>
