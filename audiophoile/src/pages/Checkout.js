@@ -3,9 +3,10 @@ import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { useGlobalContext } from '../components/context'
 import { formatPrice } from '../utilis/Price'
 import Shape from '../images/Shape.png'
-
+import good from '../images/good.png'
 const Checkout = () => {
-  const { cart, shipping_fee, total_amount } = useGlobalContext()
+  const { cart, shipping_fee, total_amount, clearCartItems } =
+    useGlobalContext()
   console.log(cart)
   const navigate = useNavigate()
   const initialState = {
@@ -22,8 +23,9 @@ const Checkout = () => {
   const [payment, setPayment] = React.useState()
   const [formValues, setFormValues] = useState(initialState)
   const [isSubmit, setIsSubmit] = useState(false)
-  const [cash, setCash] = useState(true)
-  const [eMoney, setEmoney] = useState(false)
+  const [cash, setCash] = useState(false)
+  const [eMoney, setEmoney] = useState(true)
+  const [thankYou, setThankYou] = useState(false)
 
   const [formErrors, setFormErrors] = useState({})
   // const checkout = async () => {
@@ -83,15 +85,53 @@ const Checkout = () => {
     if (!values.country) {
       errors.country = 'country is required'
     }
-    if (!values.card) {
-      errors.card = 'Card is required'
+    if (eMoney) {
+      if (!values.card) {
+        errors.card = 'card is required'
+        setThankYou(false)
+      }
+      if (!values.pin) {
+        errors.pin = 'pin is required'
+        setThankYou(false)
+      }
     }
-    if (!values.pin) {
-      errors.pin = 'Pin is required'
+
+    if (
+      cash &&
+      !eMoney &&
+      (!values.name ||
+        !values.phone ||
+        !values.address ||
+        !values.email ||
+        !values.city ||
+        !values.city ||
+        !values.zipCode ||
+        !values.country)
+    ) {
+      setThankYou(false)
+    } else if (
+      !cash &&
+      eMoney &&
+      (!values.name ||
+        !values.phone ||
+        !values.address ||
+        !values.email ||
+        !values.city ||
+        !values.city ||
+        !values.zipCode ||
+        !values.country ||
+        !values.card ||
+        !values.pin)
+    ) {
+      setThankYou(false)
+    } else {
+      toggleThankYou()
     }
     return errors
   }
-
+  const toggleThankYou = () => {
+    setThankYou(true)
+  }
   useEffect(() => {
     console.log(formErrors)
     if (Object.keys(formErrors).length === 0 && isSubmit) {
@@ -100,7 +140,7 @@ const Checkout = () => {
   }, [formErrors, isSubmit])
   return (
     <section className='bg-grayColor '>
-      <div className='flex flex-col xl:mx-32 lg:mx-24 mx-4 py-12'>
+      <div className='flex flex-col xl:mx-32 lg:mx-24 mx-4 py-12 relative'>
         <button
           className='capitalize opacity-50 flex items-start mt-6'
           onClick={() => navigate(-1)}
@@ -406,7 +446,9 @@ const Checkout = () => {
             </div>
             <div className='flex justify-between'>
               <p className='text-[#000] opacity-50 '>SHIPPING</p>
-              <p className='font-bold'>{formatPrice(shipping_fee)}</p>
+              <p className='font-bold'>
+                {cart.length === 0 ? 0 : formatPrice(shipping_fee)}
+              </p>
             </div>
             <div className='flex justify-between'>
               <p className='text-[#000] opacity-50 '>VAT(Included)</p>
@@ -415,7 +457,7 @@ const Checkout = () => {
             <div className='flex justify-between'>
               <p className='text-[#000] opacity-50 '>GRAND TOTAL</p>
               <p className='font-bold text-[#D87D4A]'>
-                {formatPrice(total_amount + 50)}
+                {formatPrice(cart.length === 0 ? 0 : total_amount + 50)}
               </p>
             </div>
             <button
@@ -427,7 +469,64 @@ const Checkout = () => {
             </button>
           </article>
         </div>
+
+        {thankYou && (
+          <div className='flex flex-col z-50 items-center p-8 gap-8 md:w-[450px] bg-[#fff] absolute top-[15%] left-0 right-0 mx-auto'>
+            <img src={good} alt='' className='mr-auto flex' />
+            <h2 className='flex mr-auto mt- text-2xl'>
+              THANK YOU FOR <br /> YOUR ORDER
+            </h2>
+            <p className='flex mr-auto mt- text-sm text-[#000] opacity-50'>
+              You will receive an email confirmation shortly
+            </p>
+            <article className='flex w-full '>
+              <div className='w-1/2 bg-[#F1F1F1] p-2 rounded-lg rounded-r-none'>
+                {cart
+                  .map((item) => {
+                    const { img, name, price, amount, id } = item
+                    return (
+                      <div key={id} className='flex justify-between  '>
+                        <div className='flex gap-2 justify-between items-center'>
+                          <img src={img} alt='' className='w-[32px]' />
+                          <div>
+                            <p className='font-bold text-sm'>{name}</p>
+                            <p>{formatPrice(price)}</p>
+                            {cart.length > 1 && (
+                              <div>
+                                <div className='w-full h-[1px] bg-[#000] opacity-50 mt-2'></div>
+                                <p>and {cart.length - 1} item(s)</p>
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                        <p>x{amount}</p>
+                      </div>
+                    )
+                  })
+                  .slice(0, 1)}
+              </div>
+              <div className='w-1/2 bg-[#000] flex flex-col justify-center items-center rounded-lg rounded-l-none'>
+                <p className='text-[#fff] opacity-50 text-sm'>GRAND TOTAL</p>
+                <p className='text-[#fff] font-bold'>
+                  {formatPrice(total_amount)}
+                </p>
+              </div>
+            </article>
+            <Link
+              to={'/'}
+              className='uppercase p-3 w-full bg-orange hover:opacity-75 duration-500  text-white text-center mx-auto sm:mx-0 mt-6 '
+              onClick={() => clearCartItems()}
+            >
+              Back to home
+            </Link>
+          </div>
+        )}
       </div>
+      {thankYou && (
+        <div className='h-full w-full fixed bg-[#000] opacity-75 top-0 left-0'>
+          {' '}
+        </div>
+      )}
     </section>
   )
 }

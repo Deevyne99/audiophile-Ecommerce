@@ -103,6 +103,9 @@ const reducer = (state, action) => {
     })
     return { ...state, cart: updatedProduct }
   }
+  if (action.type === 'CLEAR_CART_ITEMS') {
+    return { ...state, cart: [] }
+  }
   throw new Error(`No Matching "${action.type}" - action type`)
 }
 export default reducer

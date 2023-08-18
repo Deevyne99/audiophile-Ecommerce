@@ -77,6 +77,9 @@ export const AppProvider = ({ children }) => {
     dispatch({ type: 'COUNT_CART_TOTAL' })
     localStorage.setItem('cart', JSON.stringify(state.cart))
   }, [state.cart])
+  const clearCartItems = () => {
+    dispatch({ type: 'CLEAR_CART_ITEMS' })
+  }
   return (
     <AppContext.Provider
       value={{
@@ -92,6 +95,7 @@ export const AppProvider = ({ children }) => {
         ClearCart,
         increaseCart,
         decreaseCart,
+        clearCartItems,
       }}
     >
       {children}
