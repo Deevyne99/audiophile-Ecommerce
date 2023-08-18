@@ -3,7 +3,10 @@ import React from 'react'
 import { shop } from '../../data'
 import { FaChevronRight } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
+import { useGlobalContext } from '../context'
+
 const Menu = () => {
+  const { toggleSideBar } = useGlobalContext()
   return (
     <section className='fixed lg:hidden duration-600 z-30 py-24 bg-white w-full rounded-b-lg'>
       <div className=' mx-4 flex-col md:mx-14 lg:mx-24 flex gap-y-16 md:flex-row justify-center gap-8 items-center'>
@@ -27,6 +30,7 @@ const Menu = () => {
               <Link
                 className='flex group-hover:text-orange cursor-pointer items-center gap-1 uppercase'
                 to={url}
+                onClick={toggleSideBar()}
               >
                 shop <FaChevronRight className='font-thin hov' />
               </Link>
