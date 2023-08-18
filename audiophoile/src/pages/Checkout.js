@@ -471,7 +471,7 @@ const Checkout = () => {
         </div>
 
         {thankYou && (
-          <div className='flex flex-col z-50 items-center p-8 gap-8 md:w-[450px] bg-[#fff] absolute top-[15%] left-0 right-0 mx-auto'>
+          <div className='flex flex-col z-20 items-center p-8 gap-8 w-[300] md:w-[450px] bg-[#fff] absolute top-[15%] left-0 right-0 mx-auto'>
             <img src={good} alt='' className='mr-auto flex' />
             <h2 className='flex mr-auto mt- text-2xl'>
               THANK YOU FOR <br /> YOUR ORDER
@@ -479,8 +479,8 @@ const Checkout = () => {
             <p className='flex mr-auto mt- text-sm text-[#000] opacity-50'>
               You will receive an email confirmation shortly
             </p>
-            <article className='flex w-full '>
-              <div className='w-1/2 bg-[#F1F1F1] p-2 rounded-lg rounded-r-none'>
+            <article className='flex w-full flex-col md:flex-row'>
+              <div className='w-full md:w-1/2 bg-[#F1F1F1] p-2 rounded-lg rounded-r-none'>
                 {cart
                   .map((item) => {
                     const { img, name, price, amount, id } = item
@@ -505,7 +505,7 @@ const Checkout = () => {
                   })
                   .slice(0, 1)}
               </div>
-              <div className='w-1/2 bg-[#000] flex flex-col justify-center items-center rounded-lg rounded-l-none'>
+              <div className='md:w-1/2 w-full bg-[#000] flex flex-col justify-center items-center rounded-lg rounded-l-none'>
                 <p className='text-[#fff] opacity-50 text-sm'>GRAND TOTAL</p>
                 <p className='text-[#fff] font-bold'>
                   {formatPrice(total_amount)}
